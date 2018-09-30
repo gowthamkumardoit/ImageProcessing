@@ -1,21 +1,93 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!--Double navigation-->
+<header>
 
-<router-outlet></router-outlet>
+  <!-- Sidebar navigation -->
+  <mdb-side-nav #sidenav class="elegant-color" [fixed]="true">
+
+    <mdb-navbar-brand>
+      <li>
+        <div class="logo-wrapper waves-light">
+          <p class="h4 py-3 pl-5">EXAMPLES</p>
+        </div>
+      </li>
+      <!--/. Logo -->
+    </mdb-navbar-brand>
+
+    <links>
+
+      <!-- Side navigation links -->
+      <li>
+        <ul class="collapsible collapsible-accordion">
+          <mdb-accordion [multiple]="false" aria-multiselectable="false">
+
+
+
+            <!-- Simple link -->
+            <mdb-accordion-item class="no-collase" routerLink="/vgg16">
+              <mdb-accordion-item-head mdbWavesEffect>
+                <i class="fa fa-hand-pointer-o"></i> VGG 16</mdb-accordion-item-head>
+              <mdb-accordion-item-body></mdb-accordion-item-body>
+            </mdb-accordion-item>
+            <mdb-accordion-item class="no-collase" routerLink="/vgg19">
+              <mdb-accordion-item-head mdbWavesEffect>
+                <i class="fa fa-hand-pointer-o"></i> VGG 19</mdb-accordion-item-head>
+              <mdb-accordion-item-body></mdb-accordion-item-body>
+            </mdb-accordion-item>
+
+          </mdb-accordion>
+        </ul>
+      </li>
+      <!--/. Side navigation links -->
+    </links>
+    <div class="sidenav-bg mask-strong"></div>
+  </mdb-side-nav>
+  <!--/. Sidebar navigation -->
+
+  <!-- Navbar -->
+  <mdb-navbar SideClass="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav white"
+    [containerInside]="false">
+
+    <navlinks class="navbar-container">
+      <!-- SideNav slide-out button -->
+      <div class="float-left">
+        <a (click)="sidenav.show()" class="button-collapse hidden-nav-button-collapse">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+      <!--/. SideNav slide-out button -->
+    </navlinks>
+
+    <mdb-navbar-brand>
+      <!-- Breadcrumb-->
+      <div class="breadcrumbs breadcrumbs-hidden-nav breadcrumb-dn mr-auto" style="width:280px">
+        <p class="h4">MACHINE LEARNING</p>
+      </div>
+      <!--/. Breadcrumb-->
+    </mdb-navbar-brand>
+    <navlinks class="ml-5">
+
+      <ul class="nav navbar-nav nav-flex-icons ml-auto ie-double-nav ie-hidden-double-nav">
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect routerLink="/home">
+            <button mdbBtn type="button" color="elegant" class="waves-light" outline="true" size="sm" mdbWavesEffect><i
+                class="fa fa-home mr-1"></i>HOME</button>
+          </a>
+        </li>
+
+      </ul>
+    </navlinks>
+
+  </mdb-navbar>
+  <!--/. Navbar -->
+
+</header>
+<!--/.Double navigation-->
+
+<!--Main Layout-->
+<main>
+  <div class="container-fluid">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+<!--/Main layout-->
