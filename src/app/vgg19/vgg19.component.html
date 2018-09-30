@@ -1,14 +1,14 @@
 <div class="container-fluid mt-5 animated slideInDown">
     <mdb-card>
       <mdb-card-header class="grey darken-3 white-text">
-        VGG 16 Model:
+        VGG 19 Model:
       </mdb-card-header>
       <mdb-card-body>
         <div class="row">
           <div class="col-md-4 d-flex justify-content-center">
             <div class="" style="width:100%; min-height:300px;  border: 2px dashed #000000;">
               <!-- {{uploadPercent}} -->
-              <img [src]="imageURL"  *ngIf="imageURL" #imageData />
+              <img [src]="imageURL" style="width:100%; min-height:300px; " *ngIf="imageURL" #imageData />
             </div>
           </div>
           <div class="col-md-7">

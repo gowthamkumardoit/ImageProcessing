@@ -1,10 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApplicationService } from '../services/application.service';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Observable } from 'rxjs';
-import { async } from 'q';
-import * as tf from '@tensorflow/tfjs';
-import { IMAGENET_CLASSES } from '../constants/imageNet.constant';
 import { HttpClient } from '@angular/common/http';
 
 @Component({

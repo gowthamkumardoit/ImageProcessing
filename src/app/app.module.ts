@@ -13,13 +13,15 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { Vgg19Component } from './vgg19/vgg19.component';
+import { Cifar10Component } from './cifar10/cifar10.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Vgg16Component,
     HomeComponent,
-    Vgg19Component
+    Vgg19Component,
+    Cifar10Component
   ],
   imports: [
     BrowserModule,
