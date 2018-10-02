@@ -9,6 +9,7 @@
       <li>
         <div class="logo-wrapper waves-light">
           <p class="h4 py-3 pl-5">EXAMPLES</p>
+
         </div>
       </li>
       <!--/. Logo -->
@@ -34,9 +35,24 @@
                 <i class="fa fa-hand-pointer-o"></i> VGG 19</mdb-accordion-item-head>
               <mdb-accordion-item-body></mdb-accordion-item-body>
             </mdb-accordion-item>
-            <mdb-accordion-item class="no-collase" routerLink="/cifar10">
+            <mdb-accordion-item class="no-collase" routerLink="/resNet">
               <mdb-accordion-item-head mdbWavesEffect>
-                <i class="fa fa-hand-pointer-o"></i> CIFAR 10</mdb-accordion-item-head>
+                <i class="fa fa-hand-pointer-o"></i> ResNet</mdb-accordion-item-head>
+              <mdb-accordion-item-body></mdb-accordion-item-body>
+            </mdb-accordion-item>
+            <mdb-accordion-item class="no-collase" routerLink="/inception">
+              <mdb-accordion-item-head mdbWavesEffect>
+                <i class="fa fa-hand-pointer-o"></i> Inception V3</mdb-accordion-item-head>
+              <mdb-accordion-item-body></mdb-accordion-item-body>
+            </mdb-accordion-item>
+            <mdb-accordion-item class="no-collase" routerLink="/denseNet121">
+              <mdb-accordion-item-head mdbWavesEffect>
+                <i class="fa fa-hand-pointer-o"></i> Dense Net 121</mdb-accordion-item-head>
+              <mdb-accordion-item-body></mdb-accordion-item-body>
+            </mdb-accordion-item>
+            <mdb-accordion-item class="no-collase" routerLink="/denseNet169">
+              <mdb-accordion-item-head mdbWavesEffect>
+                <i class="fa fa-hand-pointer-o"></i> Dense Net 169</mdb-accordion-item-head>
               <mdb-accordion-item-body></mdb-accordion-item-body>
             </mdb-accordion-item>
           </mdb-accordion>
@@ -72,13 +88,18 @@
     <navlinks class="ml-5">
 
       <ul class="nav navbar-nav nav-flex-icons ml-auto ie-double-nav ie-hidden-double-nav">
+        <a href="https://github.com/gowthamkumardoit/ImageProcessing" target="_blank" type="button" class="btn-floating my-1 btn-git waves-effect waves-light" mdbTooltip="view in Github" placement="bottom"><i class="fa fa-github"></i></a>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect routerLink="/allModels">
+            <button mdbBtn type="button" color="elegant" class="waves-light" size="sm" mdbWavesEffect>All Models</button>
+          </a>
+        </li>
         <li class="nav-item">
           <a class="nav-link waves-light" mdbWavesEffect routerLink="/home">
             <button mdbBtn type="button" color="elegant" class="waves-light" outline="true" size="sm" mdbWavesEffect><i
                 class="fa fa-home mr-1"></i>HOME</button>
           </a>
         </li>
-
       </ul>
     </navlinks>
 

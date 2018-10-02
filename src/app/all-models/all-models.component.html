@@ -1,0 +1,103 @@
+<div class="container-fluid mt-3 animated slideInUp">
+  <div class="row">
+    <div class="col-md-4 ">
+      <mdb-card>
+        <mdb-card-header class="grey darken-3 white-text">
+          All Model Input:
+        </mdb-card-header>
+        <mdb-card-body>
+          <div class="" style="width:100%; min-height:300px;  border: 2px dashed #000000;">
+            <img [src]="imageURL" style="width:100%; min-height:300px; " *ngIf="imageURL" #imageData />
+          </div>
+          <button mdbBtn type="button" color="danger" class="waves-light" mdbWavesEffect (click)="fileInput.click()">Upload</button>
+          <button mdbBtn type="button" color="elegant" class="waves-light" mdbWavesEffect (click)="predict_new()">Predict</button>
+          <input type="file" #fileInput style="display:none;" (change)="uploadEvent($event)">
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-md-4">
+      <mdb-card>
+        <mdb-card-header class="grey darken-3 white-text">
+          VGG 16:
+        </mdb-card-header>
+        <mdb-card-body>
+          <div style="display: block; height: 300px;">
+            <canvas mdbChart [chartType]="chartType" [data]="chartData" [labels]="chartLabels" [colors]="chartColors"
+              [options]="chartOptions" [legend]="true" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-md-4">
+      <mdb-card>
+        <mdb-card-header class="grey darken-3 white-text">
+          VGG 19:
+        </mdb-card-header>
+        <mdb-card-body>
+          <div style="display: block; height: 300px;">
+            <canvas mdbChart [chartType]="chartType" [data]="chartData1" [labels]="chartLabels1" [colors]="chartColors"
+              [options]="chartOptions" [legend]="true" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-md-4 mt-3">
+      <mdb-card>
+        <mdb-card-header class="grey darken-3 white-text">
+          ResNet:
+        </mdb-card-header>
+        <mdb-card-body>
+          <div style="display: block; height: 300px;">
+            <canvas mdbChart [chartType]="chartType" [data]="chartData2" [labels]="chartLabels2" [colors]="chartColors"
+              [options]="chartOptions" [legend]="true" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-md-4 mt-3">
+      <mdb-card>
+        <mdb-card-header class="grey darken-3 white-text">
+          Inception V3:
+        </mdb-card-header>
+        <mdb-card-body>
+          <div style="display: block; height: 300px;">
+            <canvas mdbChart [chartType]="chartType" [data]="chartData3" [labels]="chartLabels3" [colors]="chartColors"
+              [options]="chartOptions" [legend]="true" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-md-4 mt-3">
+      <mdb-card>
+        <mdb-card-header class="grey darken-3 white-text">
+          DenseNet 121:
+        </mdb-card-header>
+        <mdb-card-body>
+          <div style="display: block; height: 300px;">
+            <canvas mdbChart [chartType]="chartType" [data]="chartData4" [labels]="chartLabels4" [colors]="chartColors"
+              [options]="chartOptions" [legend]="true" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+    <div class="col-md-4 mt-3">
+      <mdb-card>
+        <mdb-card-header class="grey darken-3 white-text">
+          Dense Net 169:
+        </mdb-card-header>
+        <mdb-card-body>
+          <div style="display: block; height: 300px;">
+            <canvas mdbChart [chartType]="chartType" [data]="chartData5" [labels]="chartLabels5" [colors]="chartColors"
+              [options]="chartOptions" [legend]="true" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+  </div>
+</div>

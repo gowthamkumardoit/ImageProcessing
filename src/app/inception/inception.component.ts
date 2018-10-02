@@ -3,12 +3,14 @@ import { ApplicationService } from '../services/application.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { HttpClient } from '@angular/common/http';
 
+
+
 @Component({
-  selector: 'app-cifar10',
-  templateUrl: './cifar10.component.html',
-  styleUrls: ['./cifar10.component.scss']
+  selector: 'app-inception',
+  templateUrl: './inception.component.html',
+  styleUrls: ['./inception.component.scss']
 })
-export class Cifar10Component implements OnInit {
+export class InceptionComponent implements OnInit {
   @ViewChild('imageData') imageData: ElementRef;
   value = 0;
   imageURL: any;
@@ -22,20 +24,6 @@ export class Cifar10Component implements OnInit {
   keys: any;
   values: any;
 
-  CIFAR_10_CLASSES = [
-    'airplane',
-    'automobile',
-    'bird',
-    'cat',
-    'deer',
-    'dog',
-    'frog',
-    'horse',
-    'ship',
-    'truck'
-  ];
-
-  predictedValues = [];
   public chartType: string = 'doughnut';
 
   public chartData: Array<any> = [];
@@ -57,7 +45,7 @@ export class Cifar10Component implements OnInit {
   constructor(private appService: ApplicationService, private storage: AngularFireStorage, private http: HttpClient) { }
 
   ngOnInit() {
-
+    
   }
   uploadEvent(event) {
     this.chartData = [];
@@ -78,39 +66,25 @@ export class Cifar10Component implements OnInit {
     let message = {
       image: this.imageData.nativeElement.currentSrc.replace("data:image/jpeg;base64,", "")
     };
-    this.http.post("http://localhost:5200/predict", JSON.stringify(message)).subscribe((data: any) => {
-
-      data = (data.split(","));
-      data = data.map(item => {
-        return parseFloat(item);
+    this.http.post("http://localhost:5300/predict", JSON.stringify(message)).subscribe((data: any) => {
+      data = data.replace('{', '');
+      data = data.split('}');
+      let newData = data.map(item => {
+        return item.replace('{', '')
       });
-      let value = [];
-      data.forEach((item, i) => {
-        if (item > 0) {
-          value.push(this.CIFAR_10_CLASSES[i]);
+      newData = newData.map(item => {
+        return item.split(":");
+      });
+      this.keys = [];
+      this.values = [];
+      newData.map(item => {
+        if (item[0] != '' && item[1] != '') {
+          this.keys.push(item[0].replace("'", "").replace("'", "").toUpperCase());
+          this.values.push((parseFloat(item[1].trim()) * 100).toFixed(4));
         }
       });
-      this.predictedValues = value;
-
-      console.log(value);
-      // data = data.replace('{', '');
-      // data = data.split('}');
-      // let newData = data.map(item => {
-      //   return item.replace('{', '')
-      // });
-      // newData = newData.map(item => {
-      //   return item.split(":");
-      // });
-      // this.keys = [];
-      // this.values = [];
-      // newData.map(item => {
-      //   if (item[0] != '' && item[1] != '') {
-      //     this.keys.push(item[0].replace("'", "").replace("'", "").toUpperCase());
-      //     this.values.push((parseFloat(item[1].trim()) * 100).toFixed(4));
-      //   }
-      // });
-      // this.chartData = this.values;
-      // this.chartLabels = this.keys;
+      this.chartData = this.values;
+      this.chartLabels = this.keys;
     });
   }
 

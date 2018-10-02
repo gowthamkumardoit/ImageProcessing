@@ -1,0 +1,53 @@
+<div class="container-fluid mt-5 animated slideInDown">
+  <mdb-card>
+    <mdb-card-header class="grey darken-3 white-text">
+      DenseNet 121 Model:
+    </mdb-card-header>
+    <mdb-card-body>
+      <div class="row">
+        <div class="col-md-4 d-flex justify-content-center">
+          <div class="" style="width:100%; min-height:300px;  border: 2px dashed #000000;">
+            <!-- {{uploadPercent}} -->
+            <img [src]="imageURL" style="width:100%; min-height:300px; " *ngIf="imageURL" #imageData />
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div style="display: block">
+            <canvas mdbChart [chartType]="chartType" [data]="chartData" [labels]="chartLabels" [colors]="chartColors"
+              [options]="chartOptions" [legend]="true" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center mt-3">
+          <button mdbBtn type="button" color="danger" class="waves-light" mdbWavesEffect (click)="fileInput.click()">Upload</button>
+          <button mdbBtn type="button" color="elegant" class="waves-light" mdbWavesEffect (click)="predict_new()">Predict</button>
+          <input type="file" #fileInput style="display:none;" (change)="uploadEvent($event)">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-7 animated slideInDown">
+          <div *ngFor="let key of keys; let i = index;">
+            <div class="row">
+              <div class="col-md-3 h5">{{key}}</div>
+              <div class="col-md-7">
+                <mdb-progress *ngIf="i==0" value="{{values[i]}}" min="0" max="100" type="success" aria-valuenow="25"
+                  aria-valuemin="0" aria-valuemax="100"></mdb-progress>
+                <mdb-progress *ngIf="i==1" value="{{values[i]}}" min="0" max="100" type="info" aria-valuenow="25"
+                  aria-valuemin="0" aria-valuemax="100"></mdb-progress>
+                <mdb-progress *ngIf="i==2" value="{{values[i]}}" min="0" max="100" type="warning" aria-valuenow="25"
+                  aria-valuemin="0" aria-valuemax="100"></mdb-progress>
+                <mdb-progress *ngIf="i> 2" value="{{values[i]}}" min="0" max="100" type="danger" aria-valuenow="25"
+                  aria-valuemin="0" aria-valuemax="100"></mdb-progress>
+              </div>
+              <div class="col-md-2"> {{values[i]}} %</div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </mdb-card-body>
+  </mdb-card>
+</div>

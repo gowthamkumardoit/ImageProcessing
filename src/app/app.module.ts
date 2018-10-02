@@ -13,7 +13,11 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { Vgg19Component } from './vgg19/vgg19.component';
-import { Cifar10Component } from './cifar10/cifar10.component';
+import { ResNetComponent } from './res-net/res-net.component';
+import { InceptionComponent } from './inception/inception.component';
+import { DenseNet121Component } from './dense-net121/dense-net121.component';
+import { DenseNet169Component } from './dense-net169/dense-net169.component';
+import { AllModelsComponent } from './all-models/all-models.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { Cifar10Component } from './cifar10/cifar10.component';
     Vgg16Component,
     HomeComponent,
     Vgg19Component,
-    Cifar10Component
+    ResNetComponent,
+    InceptionComponent,
+    DenseNet121Component,
+    DenseNet169Component,
+    AllModelsComponent,
   ],
   imports: [
     BrowserModule,
