@@ -22,7 +22,25 @@ export class Vgg16Component implements OnInit {
   keys: any;
   values: any;
 
-  public chartType: string = 'doughnut';
+    CIFAR100_LABELS_LIST = [
+        'apple', 'aquarium_fish', 'baby', 'bear', 'beaver', 'bed', 'bee', 'beetle',
+        'bicycle', 'bottle', 'bowl', 'boy', 'bridge', 'bus', 'butterfly', 'camel',
+        'can', 'castle', 'caterpillar', 'cattle', 'chair', 'chimpanzee', 'clock',
+        'cloud', 'cockroach', 'couch', 'crab', 'crocodile', 'cup', 'dinosaur',
+        'dolphin', 'elephant', 'flatfish', 'forest', 'fox', 'girl', 'hamster',
+        'house', 'kangaroo', 'keyboard', 'lamp', 'lawn_mower', 'leopard', 'lion',
+        'lizard', 'lobster', 'man', 'maple_tree', 'motorcycle', 'mountain', 'mouse',
+        'mushroom', 'oak_tree', 'orange', 'orchid', 'otter', 'palm_tree', 'pear',
+        'pickup_truck', 'pine_tree', 'plain', 'plate', 'poppy', 'porcupine',
+        'possum', 'rabbit', 'raccoon', 'ray', 'road', 'rocket', 'rose',
+        'sea', 'seal', 'shark', 'shrew', 'skunk', 'skyscraper', 'snail', 'snake',
+        'spider', 'squirrel', 'streetcar', 'sunflower', 'sweet_pepper', 'table',
+        'tank', 'telephone', 'television', 'tiger', 'tractor', 'train', 'trout',
+        'tulip', 'turtle', 'wardrobe', 'whale', 'willow_tree', 'wolf', 'woman',
+        'worm'
+    ];
+
+  public chartType = 'doughnut';
 
   public chartData: Array<any> = [];
 
@@ -31,8 +49,8 @@ export class Vgg16Component implements OnInit {
   public chartColors: Array<any> = [{
     hoverBorderColor: ['rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)'],
     hoverBorderWidth: 0,
-    backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+    backgroundColor: ['#F7464A', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'],
+    hoverBackgroundColor: ['#FF5A5E', '#5AD3D1', '#FFC870', '#A8B3C5', '#616774']
   }];
 
   public chartOptions: any = {
@@ -43,7 +61,7 @@ export class Vgg16Component implements OnInit {
   constructor(private appService: ApplicationService, private storage: AngularFireStorage, private http: HttpClient) { }
 
   ngOnInit() {
-    
+
   }
 
 
@@ -53,38 +71,41 @@ export class Vgg16Component implements OnInit {
     this.chartLabels = [];
     this.keys = [];
     if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+      const reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]); // read file as data url
-      reader.onload = (event: any) => { // called once readAsDataURL is completed
-        this.imageURL = event.target.result;
-      }
+      reader.onload = ($event: any) => { // called once readAsDataURL is completed
+        this.imageURL = $event.target.result;
+      };
     }
   }
 
 
   predict_new() {
-    let message = {
-      image: this.imageData.nativeElement.currentSrc.replace("data:image/jpeg;base64,", "")
+    const message = {
+      image: this.imageData.nativeElement.currentSrc.replace('data:image/jpeg;base64,', '')
     };
-    this.http.post("http://localhost:5000/predict", JSON.stringify(message)).subscribe((data: any) => {
-      data = data.replace('{', '');
-      data = data.split('}');
-      let newData = data.map(item => {
-        return item.replace('{', '')
-      });
-      newData = newData.map(item => {
-        return item.split(":");
-      });
-      this.keys = [];
-      this.values = [];
-      newData.map(item => {
-        if (item[0] != '' && item[1] != '') {
-          this.keys.push(item[0].replace("'", "").replace("'", "").toUpperCase());
-          this.values.push((parseFloat(item[1].trim()) * 100).toFixed(4));
-        }
-      });
-      this.chartData = this.values;
-      this.chartLabels = this.keys;
+    this.http.post('http://localhost:5000/predict', JSON.stringify(message)).subscribe((data: any) => {
+
+      console.log(data);
+
+      // data = data.replace('{', '');
+      // data = data.split('}');
+      // let newData = data.map(item => {
+      //   return item.replace('{', '')
+      // });
+      // newData = newData.map(item => {
+      //   return item.split(':');
+      // });
+      // this.keys = [];
+      // this.values = [];
+      // newData.map(item => {
+      //   if (item[0] != '' && item[1] != '') {
+      //     this.keys.push(item[0].replace(''', '').replace(''', '').toUpperCase());
+      //     this.values.push((parseFloat(item[1].trim()) * 100).toFixed(4));
+      //   }
+      // });
+      // this.chartData = this.values;
+      // this.chartLabels = this.keys;
     });
   }
 
@@ -103,9 +124,9 @@ export class Vgg16Component implements OnInit {
     //   };
 
     //   let indices = [
-    //     tf.tensor1d([0], "int32"),
-    //     tf.tensor1d([1], "int32"),
-    //     tf.tensor1d([2], "int32")
+    //     tf.tensor1d([0], 'int32'),
+    //     tf.tensor1d([1], 'int32'),
+    //     tf.tensor1d([2], 'int32')
     //   ];
 
     //   let centeredRGB = {
@@ -125,7 +146,7 @@ export class Vgg16Component implements OnInit {
     //                           .reverse(2)
     //                           .expandDims();
 
-    //   console.log("predict called", tf.memory());
+    //   console.log('predict called', tf.memory());
 
     //   let predictions = await model.predict(processedTensor).data();
     //   predictions.dispose();

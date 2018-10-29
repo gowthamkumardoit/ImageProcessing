@@ -23,7 +23,7 @@ export class AllModelsComponent implements OnInit {
   keys: any;
   values: any;
 
-  public chartType: string = 'doughnut';
+  public chartType = 'doughnut';
 
   public chartData: Array<any> = [];
   public chartLabels: Array<any> = [];
@@ -58,7 +58,7 @@ export class AllModelsComponent implements OnInit {
   constructor(private appService: ApplicationService, private storage: AngularFireStorage, private http: HttpClient) { }
 
   ngOnInit() {
-    
+
   }
   uploadEvent(event) {
     this.chartData = [];
@@ -82,14 +82,13 @@ export class AllModelsComponent implements OnInit {
         this.chartLabels3 = [];
         this.chartLabels4 = [];
         this.chartLabels5 = [];
-
-      }
+      };
     }
   }
 
 
   predict_new() {
-    let message = {
+    const message = {
       image: this.imageData.nativeElement.currentSrc.replace("data:image/jpeg;base64,", "")
     };
     this.http.post("http://localhost:5000/predict", JSON.stringify(message)).subscribe((data: any) => {
@@ -114,20 +113,12 @@ export class AllModelsComponent implements OnInit {
     });
 
     this.http.post("http://localhost:5100/predict", JSON.stringify(message)).subscribe((data: any) => {
-      data = data.replace('{', '');
-      data = data.split('}');
-      let newData = data.map(item => {
-        return item.replace('{', '')
-      });
-      newData = newData.map(item => {
-        return item.split(":");
-      });
       this.keys = [];
       this.values = [];
-      newData.map(item => {
-        if (item[0] != '' && item[1] != '') {
-          this.keys.push(item[0].replace("'", "").replace("'", "").toUpperCase());
-          this.values.push((parseFloat(item[1].trim()) * 100).toFixed(4));
+      data.map(item => {
+        if (item) {
+          this.keys.push(item.name.toUpperCase());
+          this.values.push((parseFloat(item.probability) * 100).toFixed(4));
         }
       });
       this.chartData1 = this.values;
@@ -135,88 +126,16 @@ export class AllModelsComponent implements OnInit {
     });
 
     this.http.post("http://localhost:5200/predict", JSON.stringify(message)).subscribe((data: any) => {
-      data = data.replace('{', '');
-      data = data.split('}');
-      let newData = data.map(item => {
-        return item.replace('{', '')
-      });
-      newData = newData.map(item => {
-        return item.split(":");
-      });
       this.keys = [];
       this.values = [];
-      newData.map(item => {
-        if (item[0] != '' && item[1] != '') {
-          this.keys.push(item[0].replace("'", "").replace("'", "").toUpperCase());
-          this.values.push((parseFloat(item[1].trim()) * 100).toFixed(4));
+      data.map(item => {
+        if (item) {
+          this.keys.push(item.name.toUpperCase());
+          this.values.push((parseFloat(item.probability) * 100).toFixed(4));
         }
       });
       this.chartData2 = this.values;
       this.chartLabels2 = this.keys;
-    });
-
-    this.http.post("http://localhost:5300/predict", JSON.stringify(message)).subscribe((data: any) => {
-      data = data.replace('{', '');
-      data = data.split('}');
-      let newData = data.map(item => {
-        return item.replace('{', '')
-      });
-      newData = newData.map(item => {
-        return item.split(":");
-      });
-      this.keys = [];
-      this.values = [];
-      newData.map(item => {
-        if (item[0] != '' && item[1] != '') {
-          this.keys.push(item[0].replace("'", "").replace("'", "").toUpperCase());
-          this.values.push((parseFloat(item[1].trim()) * 100).toFixed(4));
-        }
-      });
-      this.chartData3 = this.values;
-      this.chartLabels3 = this.keys;
-    });
-
-    this.http.post("http://localhost:5400/predict", JSON.stringify(message)).subscribe((data: any) => {
-      data = data.replace('{', '');
-      data = data.split('}');
-      let newData = data.map(item => {
-        return item.replace('{', '')
-      });
-      newData = newData.map(item => {
-        return item.split(":");
-      });
-      this.keys = [];
-      this.values = [];
-      newData.map(item => {
-        if (item[0] != '' && item[1] != '') {
-          this.keys.push(item[0].replace("'", "").replace("'", "").toUpperCase());
-          this.values.push((parseFloat(item[1].trim()) * 100).toFixed(4));
-        }
-      });
-      this.chartData4 = this.values;
-      this.chartLabels4 = this.keys;
-    });
-
-
-    this.http.post("http://localhost:5500/predict", JSON.stringify(message)).subscribe((data: any) => {
-      data = data.replace('{', '');
-      data = data.split('}');
-      let newData = data.map(item => {
-        return item.replace('{', '')
-      });
-      newData = newData.map(item => {
-        return item.split(":");
-      });
-      this.keys = [];
-      this.values = [];
-      newData.map(item => {
-        if (item[0] != '' && item[1] != '') {
-          this.keys.push(item[0].replace("'", "").replace("'", "").toUpperCase());
-          this.values.push((parseFloat(item[1].trim()) * 100).toFixed(4));
-        }
-      });
-      this.chartData5 = this.values;
-      this.chartLabels5 = this.keys;
     });
 
   }

@@ -18,6 +18,9 @@ import { InceptionComponent } from './inception/inception.component';
 import { DenseNet121Component } from './dense-net121/dense-net121.component';
 import { DenseNet169Component } from './dense-net169/dense-net169.component';
 import { AllModelsComponent } from './all-models/all-models.component';
+import { Cifar100Component } from './cifar100/cifar100.component';
+import { Cifar10Component } from './cifar10/cifar10.component';
+import { TransferModelComponent } from './transfer-model/transfer-model.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { AllModelsComponent } from './all-models/all-models.component';
     DenseNet121Component,
     DenseNet169Component,
     AllModelsComponent,
+    Cifar100Component,
+    Cifar10Component,
+    TransferModelComponent,
   ],
   imports: [
     BrowserModule,

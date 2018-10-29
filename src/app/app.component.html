@@ -21,11 +21,32 @@
       <li>
         <ul class="collapsible collapsible-accordion">
           <mdb-accordion [multiple]="false" aria-multiselectable="false">
+            <mdb-accordion-item class="no-collase" routerLink="/inception">
+              <mdb-accordion-item-head mdbWavesEffect>
+                <i class="fa fa-hand-pointer-o"></i>Pre-trained Model - Inception V3</mdb-accordion-item-head>
+              <mdb-accordion-item-body></mdb-accordion-item-body>
+            </mdb-accordion-item>
 
+            <!-- <mdb-accordion-item class="no-collase" routerLink="/transferlearning">
+              <mdb-accordion-item-head mdbWavesEffect>
+                <i class="fa fa-hand-pointer-o"></i>Transfer Learning Model</mdb-accordion-item-head>
+              <mdb-accordion-item-body></mdb-accordion-item-body>
+            </mdb-accordion-item> -->
 
+            <mdb-accordion-item class="no-collase" routerLink="/cifar10">
+              <mdb-accordion-item-head mdbWavesEffect>
+                <i class="fa fa-hand-pointer-o"></i>Trained Model - CIFAR 10</mdb-accordion-item-head>
+              <mdb-accordion-item-body></mdb-accordion-item-body>
+            </mdb-accordion-item>
+
+            <mdb-accordion-item class="no-collase" routerLink="/cifar100">
+              <mdb-accordion-item-head mdbWavesEffect>
+                <i class="fa fa-hand-pointer-o"></i>Trained Model - CIFAR 100</mdb-accordion-item-head>
+              <mdb-accordion-item-body></mdb-accordion-item-body>
+            </mdb-accordion-item>
 
             <!-- Simple link -->
-            <mdb-accordion-item class="no-collase" routerLink="/vgg16">
+            <!-- <mdb-accordion-item class="no-collase" routerLink="/vgg16">
               <mdb-accordion-item-head mdbWavesEffect>
                 <i class="fa fa-hand-pointer-o"></i> VGG 16</mdb-accordion-item-head>
               <mdb-accordion-item-body></mdb-accordion-item-body>
@@ -54,7 +75,7 @@
               <mdb-accordion-item-head mdbWavesEffect>
                 <i class="fa fa-hand-pointer-o"></i> Dense Net 169</mdb-accordion-item-head>
               <mdb-accordion-item-body></mdb-accordion-item-body>
-            </mdb-accordion-item>
+            </mdb-accordion-item>-->
           </mdb-accordion>
         </ul>
       </li>
