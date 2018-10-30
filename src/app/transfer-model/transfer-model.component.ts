@@ -66,20 +66,12 @@ export class TransferModelComponent implements OnInit {
       image: this.imageData.nativeElement.currentSrc.replace('data:image/jpeg;base64,', '')
     };
     this.http.post('http://localhost:5300/predict', JSON.stringify(message)).subscribe((data: any) => {
-      data = data.replace('{', '');
-      data = data.split('}');
-      let newData = data.map(item => {
-        return item.replace('{', '');
-      });
-      newData = newData.map(item => {
-        return item.split(':');
-      });
       this.keys = [];
       this.values = [];
-      newData.map(item => {
-        if (item[0] !== '' && item[1] !== '') {
-          this.keys.push(item[0].replace("'", '').replace("'", '').toUpperCase());
-          this.values.push((parseFloat(item[1].trim()) * 100).toFixed(4));
+      data.map(item => {
+        if (item) {
+          this.keys.push(item.name.toUpperCase());
+          this.values.push((parseFloat(item.probability) * 100).toFixed(4));
         }
       });
       this.chartData = this.values;
